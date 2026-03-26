@@ -251,9 +251,26 @@ with tab_3d:
     except FileNotFoundError:
         st.warning(f"Obstacle layout for **{scene_label}** not found — obstacles skipped.")
 
-    with st.spinner("Building 3D figure…"):
-        fig_full = build_full_trajectory_fig(df, obstacles, list(GAZE_COLOR_MAP.keys()), show_head=True)
-    st.plotly_chart(fig_full, use_container_width=True)
+    frame_col = df["frame"] if "frame" in df.columns else pd.Series(df.index, index=df.index)
+    f_min = int(frame_col.min())
+    f_max = int(frame_col.max())
+
+    chart_placeholder = st.empty()
+
+    frame_range = st.slider(
+        "Time range (frames)",
+        min_value=f_min,
+        max_value=f_max,
+        value=(f_min, f_max),
+        step=1,
+    )
+
+    df_filtered = df[frame_col.between(frame_range[0], frame_range[1])]
+
+    with chart_placeholder:
+        with st.spinner("Building 3D figure…"):
+            fig_full = build_full_trajectory_fig(df_filtered, obstacles, list(GAZE_COLOR_MAP.keys()), show_head=True)
+        st.plotly_chart(fig_full, use_container_width=True)
 
 # ── Tab 2: animation player ────────────────────────────────────────────────
 with tab_anim:
