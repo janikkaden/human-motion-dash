@@ -1,0 +1,746 @@
+{
+  "version": "1.0",
+  "obstacles": [
+    {
+      "base_points": [
+        [
+          -1891.5012109054499,
+          1556.432176443913
+        ],
+        [
+          -1513.4871515625002,
+          1535.7651669642855
+        ],
+        [
+          -1521.598995214286,
+          2043.8766850133932
+        ],
+        [
+          -1913.895444582591,
+          2028.2240810535716
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 908.180115,
+      "height": 908.180115,
+      "obstacle_type": "Chair",
+      "source_file": "Chairs_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -5526.984746669647,
+          -988.3623693995536
+        ],
+        [
+          -5189.241639281247,
+          -983.9436512075887
+        ],
+        [
+          -5171.464744578121,
+          -488.724428252232
+        ],
+        [
+          -5552.5156522410625,
+          -484.13511963839255
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 926.653748,
+      "height": 926.653748,
+      "obstacle_type": "Chair",
+      "source_file": "Chairs_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          2616.2779372343753,
+          743.6146746986616
+        ],
+        [
+          2091.5447845647313,
+          1109.4230638325896
+        ],
+        [
+          2246.700509767857,
+          611.2531706785719
+        ],
+        [
+            1721.96,
+            977.06
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 886.103271,
+      "height": 886.103271,
+      "obstacle_type": "Chair",
+      "source_file": "Chairs_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -7398.460536419642,
+          2429.730767910714
+        ],
+        [
+          -7036.692993189733,
+          2442.2824358169646
+        ],
+        [
+          -7024.604291654017,
+          2923.9235589374994
+        ],
+        [
+          -7423.239903060262,
+          2909.1584952388375
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 956.039246,
+      "height": 956.039246,
+      "obstacle_type": "Chair",
+      "source_file": "Chairs_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -9928.519747084816,
+          298.3369802678571
+        ],
+        [
+          -9442.426491883927,
+          171.6662595736606
+        ],
+        [
+          -9323.379994020097,
+          502.49553250892797
+        ],
+        [
+          -9779.979551060267,
+          675.8685362455361
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 954.984558,
+      "height": 954.984558,
+      "obstacle_type": "Chair",
+      "source_file": "Chairs_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -10000,
+          700
+        ],
+        [
+          -10300,
+          50
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          633.6365590915178,
+          -2582.4551119285716
+        ],
+        [
+          984.2546522968756,
+          -2606.412555138392
+        ],
+        [
+          961.9635167857141,
+          -2106.6277776741076
+        ],
+        [
+          638.0581145982143,
+          -2100.4842720290185
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 884.918457,
+      "height": 884.918457,
+      "obstacle_type": "Chair",
+      "source_file": "Chairs_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -5797.555631552378,
+          -2596.6483964222207
+        ],
+        [
+          -4870.1135494317405,
+          -2542.1256619142846
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          2900,
+          -1000
+        ],
+        [
+          2900,
+          -2000
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          2900,
+          0
+        ],
+        [
+          2900,
+          -1000
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          2900,
+          1000
+        ],
+        [
+          2900,
+          0
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          2900,
+          2000
+        ],
+        [
+          2000,
+          2435.9
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -4859.5,
+            1011.1
+        ],
+        [
+            -4826.8,
+            1023.1
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 965.7,
+      "height": 965.7,
+      "obstacle_type": "Small_tripod",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -6785.770933679516,
+          2027.29858437288
+        ],
+        [
+          -7467.410676149455,
+          2006.0088187889055
+        ],
+        [
+            -6761.9,
+            1438.1
+        ],
+        [
+            -7458.6,
+            1416.9
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 944.244995,
+      "height": 944.244995,
+      "obstacle_type": "Container",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -6316.6, -2108.7
+        ],
+        [
+            -4529.7, -2111.8
+        ],
+        [
+            -6323.1, -1375
+        ],
+        [
+            -4526.1, -1377.0
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 906.7,
+      "height": 906.7,
+      "obstacle_type": "Table",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            168.9, -953.2
+        ],
+        [
+            1912.3, -994.0
+        ],
+        [
+            152.6, -1650.4
+        ],
+        [
+            1897.1, -1693.8
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 906.7,
+      "height": 906.7,
+      "obstacle_type": "Table",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            2315.3, 1725.0
+        ],
+        [
+            1467.0, 1840.2
+        ],
+        [
+            1697.0, 1395.5
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 612.9,
+      "height": 612.9,
+      "obstacle_type": "Chest",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -617.4, 673.3
+        ],
+        [
+            -348.2, 522.3
+        ],
+        [
+            -607.2, 335.2
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 1969.4,
+      "height": 1969.4,
+      "obstacle_type": "Large_tripod",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -7605.1, 193.5
+        ],
+        [
+            -7345.7, 73.5
+        ],
+        [
+            -7757.3, -167.7
+        ],
+        [
+            -7492.4, -273.8
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 470.0,
+      "height": 470.0,
+      "obstacle_type": "Drone",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -7605.3, -477.5
+        ],
+        [
+            -7746.7, -839.7
+        ],
+        [
+            -8011.3, -724.3
+        ],
+        [
+            -7853.4, -377.3
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 470.0,
+      "height": 470.0,
+      "obstacle_type": "Drone",
+      "source_file": "Obst_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -8350.0,
+            1430.9
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 575.7,
+      "height": 575.7,
+      "obstacle_type": "Cone",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -1343.9, 2826.8
+        ],
+        [
+            -1968.8, 2522.7
+        ],
+        [
+            -2298.6, 2770.6
+        ],
+        [
+            -2295.0, 3029.6
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 250.0,
+      "height": 250.0,
+      "obstacle_type": "Toolbox",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -1403.8, 2834.3
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 2000.0,
+      "height": 2000.0,
+      "obstacle_type": "Poster",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -4903.2, 2878.8
+        ],
+        [
+            -4547.8, 2871.6
+        ],
+        [
+            -4517.8, 3108.9
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 340,
+      "height": 340,
+      "obstacle_type": "Low_box",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -4195.5, 2558.3
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 550.0,
+      "height": 550.0,
+      "obstacle_type": "Cone",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -5597.8, 1731.5
+        ],
+        [
+            -5399.3, 1969.6
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 366.8,
+      "height": 366.8,
+      "obstacle_type": "Yellow_box",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -6479.0, 356.1
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 550.0,
+      "height": 550.0,
+      "obstacle_type": "Cone",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -163.5, -395.7
+        ],
+        [
+            236.5, -255.1
+        ],
+        [
+            -6.6, -653.1
+        ],
+        [
+            294.2, -518.9
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 500.0,
+      "height": 500.0,
+      "obstacle_type": "Stool",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -404.2, -1909.0
+        ],
+        [
+            -531.7, -1679.0
+        ],
+        [
+            -845.2, -1854.0
+        ],
+        [
+            -715.7, -2083.7
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 175.0,
+      "height": 175.0,
+      "obstacle_type": "Toolbox",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -1963.1, -1017.4
+        ],
+        [
+            -2239.0, -1016.2
+        ],
+        [
+            -1956.3, -1413.7
+        ],
+        [
+            -2216.3, -1417.3
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 260.0,
+      "height": 260.0,
+      "obstacle_type": "Toolbox",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -2903.5, -444.4
+        ],
+        [
+            -2900.8, -65.2
+        ],
+        [
+            -2914.5, -71.9
+        ],
+        [
+            -2868.2, -440.3
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 322.0,
+      "height": 322.0,
+      "obstacle_type": "Black_box",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -4369.9, -1264.7
+        ],
+        [
+            -4169.8, -1224.1
+        ],
+        [
+            -3990.1, -981.1
+        ],
+        [
+            -4219.2, -1028.8
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 344.0,
+      "height": 344.0,
+      "obstacle_type": "Bucket",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -3955.2, -779.7
+        ],
+        [
+            -3947.9, -784.3
+        ],
+        [
+            -3990.1, -981.1
+        ],
+        [
+            -4219.2, -1028.8
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 344.0,
+      "height": 344.0,
+      "obstacle_type": "Bucket",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -4661.4, -446.4
+        ],
+        [
+            -4876.2, -154.1
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 333.0,
+      "height": 333.0,
+      "obstacle_type": "Toolbox",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+            -3877.3, 408.6
+        ],
+        [
+            -4176.9, 204.4
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 335.0,
+      "height": 335.0,
+      "obstacle_type": "Black_box",
+      "source_file": "Kleinvieh_Nav_Trajectories_100"
+    },
+    {
+      "base_points": [
+        [
+          -11000,
+          -3000
+        ],
+        [
+          3000,
+          -3000
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 3000.0,
+      "height": 3000.0,
+      "obstacle_type": "wall",
+      "source_file": "manual_definition"
+    },
+    {
+      "base_points": [
+        [
+          -11000,
+          3500
+        ],
+        [
+          3000,
+          3500
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 3000.0,
+      "height": 3000.0,
+      "obstacle_type": "wall",
+      "source_file": "manual_definition"
+    },
+    {
+      "base_points": [
+        [
+          -11000,
+          -3000
+        ],
+        [
+          -11000,
+          3500
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 3000.0,
+      "height": 3000.0,
+      "obstacle_type": "wall",
+      "source_file": "manual_definition"
+    },
+    {
+      "base_points": [
+        [
+          3000,
+          -3000
+        ],
+        [
+          3000,
+          3500
+        ]
+      ],
+      "z_min": 0.0,
+      "z_max": 3000.0,
+      "height": 3000.0,
+      "obstacle_type": "wall",
+      "source_file": "manual_definition"
+    }
+  ]
+}
