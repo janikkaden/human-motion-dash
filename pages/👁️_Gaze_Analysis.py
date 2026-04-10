@@ -1,4 +1,3 @@
-import base64
 import glob
 import os
 import sys
@@ -50,10 +49,10 @@ GAZE_COLOR_MAP = {
 }
 
 GAZE_MODE_LABELS = {
-    "precomputed_fallback": "Precomputed (Vicon only)",
-    "yolo_matched": "YOLO Matched",
+    "precomputed_fallback": "Interpolated",
+    "yolo_matched": "Refined using YOLO",
     "yolo_no_match": "YOLO No Match",
-    "yolo_refined": "YOLO Refined (SAM2)",
+    "yolo_refined": "Refined using YOLO2/SAM2",
 }
 
 # ---------------------------------------------------------------------------
@@ -74,11 +73,11 @@ def load_scene_obstacles(day: int) -> ObstacleCollection:
 
 
 def find_media_files(scene_short: str, participant: str) -> dict:
-    """Glob for GIF files for the given scene/participant."""
+    """Glob for MP4 files for the given scene/participant."""
     files = {}
-    hits = glob.glob(os.path.join(GAZE_DIR, "gifs", f"tobii_*{participant}*{scene_short}*_data.gif"))
+    hits = glob.glob(os.path.join(GAZE_DIR, "videos", f"tobii_*{participant}*{scene_short}*_data.mp4"))
     if hits:
-        files["gif"] = hits[0]
+        files["mp4"] = hits[0]
     return files
 
 
@@ -203,10 +202,10 @@ with st.expander("About this page"):
 
         | Color | Mode | Meaning |
         |-------|------|---------|
-        | 🔵 Blue | Precomputed Fallback | 3D intersection from Vicon data only |
-        | 🟡 Yellow | YOLO Matched | Gaze aligns with a detected object |
+        | 🔵 Blue | Interpolated | 3D intersection from Vicon data only (Schreiter et al.) |
+        | 🟡 Yellow | Refined using YOLO | Gaze aligns with a detected object |
         | ⚫ Gray | YOLO No Match | Detection found but doesn't match 3D result |
-        | 🟢 Green | YOLO Refined | Refined with SAM2 segmentation mask |
+        | 🟢 Green | Refined using YOLO2/SAM2 | Refined with SAM2 segmentation mask |
 
         All spatial values are in **millimetres** (Z-up, Vicon world frame).
         """
@@ -220,8 +219,20 @@ with st.sidebar:
     scene_label = st.selectbox("Scene", list(SCENES.keys()))
     scene_cfg = SCENES[scene_label]
     participant_label = st.selectbox("Participant", scene_cfg["participants"])
-    participant = participant_label.lower()
+    participant = participant_label.lower()  # p1/p2/p3/p4
 
+    st.markdown("---")
+    st.subheader("Gaze modes")
+    gaze_modes = st.multiselect(
+        "Show modes",
+        options=list(GAZE_COLOR_MAP.keys()),
+        default=["yolo_matched", "yolo_refined"],
+        format_func=lambda m: GAZE_MODE_LABELS[m],
+    )
+
+    st.markdown("---")
+    show_head = st.checkbox("Show head trajectory", value=True)
+    show_obstacles = st.checkbox("Show room obstacles", value=True)
 
 # ---------------------------------------------------------------------------
 # Data loading
@@ -236,6 +247,13 @@ with st.spinner("Loading data…"):
         )
         st.stop()
 
+    obstacles = None
+    if show_obstacles:
+        try:
+            obstacles = load_scene_obstacles(scene_cfg["day"])
+        except FileNotFoundError:
+            st.warning(f"Obstacle layout for **{scene_label}** not found — obstacles skipped.")
+
 media = find_media_files(scene_cfg["scene_short"], participant)
 
 # ---------------------------------------------------------------------------
@@ -245,49 +263,24 @@ tab_3d, tab_anim, tab_stats = st.tabs(["📊 3D View", "🎬 3D Animation", "�
 
 # ── Tab 1: full trajectory 3D view ─────────────────────────────────────────
 with tab_3d:
-    obstacles = None
-    try:
-        obstacles = load_scene_obstacles(scene_cfg["day"])
-    except FileNotFoundError:
-        st.warning(f"Obstacle layout for **{scene_label}** not found — obstacles skipped.")
-
-    frame_col = df["frame"] if "frame" in df.columns else pd.Series(df.index, index=df.index)
-    f_min = int(frame_col.min())
-    f_max = int(frame_col.max())
-
-    chart_placeholder = st.empty()
-
-    frame_range = st.slider(
-        "Time range (frames)",
-        min_value=f_min,
-        max_value=f_max,
-        value=(f_min, f_max),
-        step=1,
-    )
-
-    df_filtered = df[frame_col.between(frame_range[0], frame_range[1])]
-
-    with chart_placeholder:
-        with st.spinner("Building 3D figure…"):
-            fig_full = build_full_trajectory_fig(df_filtered, obstacles, list(GAZE_COLOR_MAP.keys()), show_head=True)
-        st.plotly_chart(fig_full, use_container_width=True)
+    with st.spinner("Building 3D figure…"):
+        fig_full = build_full_trajectory_fig(df, obstacles, gaze_modes, show_head)
+    st.plotly_chart(fig_full, use_container_width=True)
 
 # ── Tab 2: animation player ────────────────────────────────────────────────
 with tab_anim:
-    if "gif" not in media:
+    if "mp4" not in media:
         st.info(
-            f"No 3D animation GIF found for **{participant_label}** / **{scene_label}**. "
+            f"No 3D animation video found for **{participant_label}** / **{scene_label}**. "
             "Run `visulaize3D_refactored.ipynb` to generate it."
         )
     else:
-        with open(media["gif"], "rb") as f:
-            gif_bytes = f.read()
-        b64 = base64.b64encode(gif_bytes).decode()
-        st.caption("⚠️ Animation is capped to the first 500 frames.")
+        st.caption("⚠️ Video is capped to the first 1000 frames.")
         st.markdown(
-            f'<img src="data:image/gif;base64,{b64}" style="width:100%">',
+            "<style>[data-testid='stVideo'] { max-width: 1200px; }</style>",
             unsafe_allow_html=True,
         )
+        st.video(media["mp4"])
 
 # ── Tab 3: Statistics ───────────────────────────────────────────────────────
 with tab_stats:
