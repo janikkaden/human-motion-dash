@@ -155,7 +155,7 @@ def build_full_trajectory_fig(
                 y=head["head_position_y"],
                 z=head["head_position_z"],
                 mode="lines",
-                line=dict(color="orange", width=2),
+                line=dict(color="orange", width=4),
                 name="Head trajectory",
                 opacity=0.5,
             ))
@@ -182,7 +182,7 @@ def build_full_trajectory_fig(
             aspectmode="data",
             camera=dict(eye=dict(x=0, y=-2.5, z=1.5)),
         ),
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, itemsizing="constant"),
         margin=dict(l=0, r=0, t=30, b=0),
         height=650,
     )
@@ -226,7 +226,7 @@ with st.sidebar:
     gaze_modes = st.multiselect(
         "Show modes",
         options=list(GAZE_COLOR_MAP.keys()),
-        default=["yolo_matched", "yolo_refined"],
+        default=["precomputed_fallback", "yolo_matched", "yolo_refined"],
         format_func=lambda m: GAZE_MODE_LABELS[m],
     )
 
@@ -263,8 +263,21 @@ tab_3d, tab_anim, tab_stats = st.tabs(["📊 3D View", "🎬 3D Animation", "�
 
 # ── Tab 1: full trajectory 3D view ─────────────────────────────────────────
 with tab_3d:
+    frame_col = df["frame"] if "frame" in df.columns else pd.Series(df.index, index=df.index)
+    f_min, f_max = int(frame_col.min()), int(frame_col.max())
+
+    frame_range = st.slider(
+        "Time range (frames)",
+        min_value=f_min,
+        max_value=f_max,
+        value=(f_min, f_max),
+        step=1,
+    )
+
+    df_filtered: pd.DataFrame = df.loc[frame_col.between(frame_range[0], frame_range[1])]  # type: ignore[assignment]
+
     with st.spinner("Building 3D figure…"):
-        fig_full = build_full_trajectory_fig(df, obstacles, gaze_modes, show_head)
+        fig_full = build_full_trajectory_fig(df_filtered, obstacles, gaze_modes, show_head)
     st.plotly_chart(fig_full, use_container_width=True)
 
 # ── Tab 2: animation player ────────────────────────────────────────────────
