@@ -31,12 +31,14 @@ SCENES = {
         "day": 31,
         "stem": "250131_1529_nav_4p_r2",
         "scene_short": "nav_4p_r2",
+        "filtered_csv": "250131_SC4_4P_R8.csv",
         "participants": ["P1", "P3", "P4"],
     },
     "Scenario 5 - Special exhibit": {
         "day": 30,
         "stem": "2025-01-30_1630_obstacles_3p_sp_1",
         "scene_short": "obstacles_3p_sp_1",
+        "filtered_csv": "250130_SC5_3P_R1.csv",
         "participants": ["P1", "P2", "P3"],
     },
 }
@@ -64,6 +66,20 @@ GAZE_MODE_LABELS = {
 def load_intersection_data(stem: str, participant: str) -> pd.DataFrame:
     path = os.path.join(GAZE_DIR, "Intersection_Data_3D", f"{stem}_{participant}.csv")
     return pd.read_csv(path)
+
+
+@st.cache_data
+def load_filtered_head_positions(filtered_csv: str, device: str) -> pd.DataFrame:
+    """Load Centroid X/Y/Z from filtered CSV for the given device (jump-free positions)."""
+    path = os.path.join(GAZE_DIR, "filtered_trajectories", filtered_csv)
+    cols = ["Frame", f"{device} - Centroid_X", f"{device} - Centroid_Y", f"{device} - Centroid_Z"]
+    raw = pd.read_csv(path, skiprows=7, usecols=cols)
+    pos = pd.DataFrame({
+        "head_position_x": pd.to_numeric(raw[f"{device} - Centroid_X"], errors="coerce"),
+        "head_position_y": pd.to_numeric(raw[f"{device} - Centroid_Y"], errors="coerce"),
+        "head_position_z": pd.to_numeric(raw[f"{device} - Centroid_Z"], errors="coerce"),
+    }, index=raw["Frame"].astype(int))
+    return pos
 
 
 @st.cache_resource
@@ -148,16 +164,15 @@ def build_full_trajectory_fig(
             fig.add_trace(t)
 
     if show_head:
-        head = df.dropna(subset=["head_position_x", "head_position_y", "head_position_z"])
-        if not head.empty:
+        if df["head_position_x"].notna().any():
             fig.add_trace(go.Scatter3d(
-                x=head["head_position_x"],
-                y=head["head_position_y"],
-                z=head["head_position_z"],
+                x=df["head_position_x"],
+                y=df["head_position_y"],
+                z=df["head_position_z"],
                 mode="lines",
                 line=dict(color="orange", width=4),
                 name="Head trajectory",
-                opacity=0.5,
+                opacity=0.8,
             ))
 
     gaze = df[df["intersection_type"] != "none"].dropna(subset=["intersection_x"])
@@ -246,6 +261,19 @@ with st.spinner("Loading data…"):
             "Make sure CSV files exist in `gaze-analysis/Intersection_Data_3D/`."
         )
         st.stop()
+
+    # Overwrite head positions with filtered Centroid data.
+    # Align by frame number — the two CSVs may have different row counts.
+    try:
+        filtered_pos = load_filtered_head_positions(scene_cfg["filtered_csv"], participant)
+        merged = df[["frame"]].merge(
+            filtered_pos, left_on="frame", right_index=True, how="left"
+        )
+        df["head_position_x"] = merged["head_position_x"].values
+        df["head_position_y"] = merged["head_position_y"].values
+        df["head_position_z"] = merged["head_position_z"].values
+    except (FileNotFoundError, KeyError):
+        st.warning("Filtered CSV not found — head trajectory may show jumps.")
 
     obstacles = None
     if show_obstacles:
